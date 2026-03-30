@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guillem — Ayudo a academias de oposiciones a conseguir más alumnos de forma constante">
+  <title>Guillem — Más alumnos para tu academia de oposiciones</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap');
+
+.gw *, .gw *::before, .gw *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.gw {
+  --or:      #C45C0A;
+  --or-mid:  #E07020;
+  --or-warm: #F5A04A;
+  --or-pale: #FDF4EC;
+  --or-lt:   #FDEBD6;
+  --sand:    #F9F3ED;
+  --ink:     #1C1410;
+  --ink2:    #3D2E24;
+  --ink3:    #8A7060;
+  --bd:      #E8D8C8;
+  --bd2:     #D4BEA8;
+  --white:   #FFFFFF;
+  --green:   #15803D;
+  --serif:   'Instrument Serif', Georgia, serif;
+  --sans:    'Figtree', system-ui, sans-serif;
+
+  font-family: var(--sans);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1;
+}
+
+.gw a { color: inherit; text-decoration: none; }
+/* Las imágenes dentro de contenedores de imagen usan object-fit definido en su clase.
+   Aquí solo evitamos que se salgan de su caja. */
+.gw img { display: block; max-width: 100%; }
+
+/* reveal */
+.gw .rv { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+.gw .rv.in { opacity: 1; transform: none; }
+
+/* wraps */
+.gw-W  { max-width: 1040px; margin: 0 auto; padding: 0 36px; }
+.gw-Wm { max-width:  780px; margin: 0 auto; padding: 0 36px; }
+
+/* ── NAV ── */
+.gw-nav {
+  position: sticky; top: 0; z-index: 300;
+  background: rgba(255,255,255,.97);
+  border-bottom: 1px solid var(--bd);
+  backdrop-filter: blur(8px);
+}
+.gw-nav-i {
+  max-width: 1040px; margin: 0 auto; padding: 0 36px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 62px;
+}
+.gw-brand { font-family: var(--serif); font-size: 19px; color: var(--ink); }
+.gw-nav-links { display: flex; align-items: center; gap: 28px; }
+.gw-nav-links a { font-size: 14px; font-weight: 500; color: var(--ink3); transition: color .2s; }
+.gw-nav-links a:hover { color: var(--ink); }
+.gw-nav-btn {
+  font-size: 13px; font-weight: 700;
+  background: var(--or); color: #fff !important;
+  padding: 9px 20px; border-radius: 3px;
+  border: none; cursor: pointer;
+  transition: background .2s; font-family: var(--sans);
+}
+.gw-nav-btn:hover { background: var(--or-mid); }
+@media(max-width:580px){ .gw-nav-links { display: none; } }
+
+/* ── BOTONES GLOBALES ── */
+.gw-btn {
+  display: block; width: 100%; text-align: center;
+  font-family: var(--sans); font-weight: 700; font-size: 15px;
+  padding: 14px 24px; border-radius: 3px;
+  border: none; cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+.gw-btn-or { background: var(--or); color: #fff; }
+.gw-btn-or:hover { background: var(--or-mid); transform: translateY(-1px); }
+.gw-btn-ol {
+  background: transparent; color: var(--or);
+  border: 1.5px solid var(--or);
+  font-size: 14px; padding: 11px 20px; margin-top: 8px;
+}
+.gw-btn-ol:hover { background: var(--or-pale); }
+
+/* ── HERO ── */
+.gw-hero { background: var(--sand); border-bottom: 1px solid var(--bd); }
+.gw-hero-i {
+  max-width: 1040px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+  /* las celdas del grid se estiran para llenar el min-height */
+  align-items: stretch;
+}
+@media(max-width:800px){
+  .gw-hero-i {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+}
+
+.gw-hero-copy {
+  padding: 72px 56px 72px 36px;
+  display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid var(--bd);
+}
+@media(max-width:800px){ .gw-hero-copy { padding: 52px 36px; border-right: none; border-bottom: 1px solid var(--bd); } }
+
+.gw-kicker {
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--or); margin-bottom: 20px; display: block;
+}
+.gw-h1 {
+  font-family: var(--serif); font-size: clamp(32px, 3.8vw, 50px);
+  color: var(--ink); line-height: 1.12; margin-bottom: 16px; font-weight: 400;
+}
+.gw-h1 em { font-style: italic; color: var(--or); }
+.gw-hero-sub { font-size: 17px; color: var(--ink2); line-height: 1.75; margin-bottom: 32px; }
+
+/* hero CTA simple — scrollea al formulario */
+.gw-hero-cta-area { display: flex; flex-direction: column; gap: 10px; max-width: 360px; }
+.gw-hero-note { font-size: 12px; color: var(--ink3); text-align: center; }
+
+.gw-hero-img {
+  position: relative; overflow: hidden;
+  /* desktop: se estira con el grid, min-height de seguridad */
+  min-height: 480px;
+}
+.gw-hero-img img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 20%;
+  display: block;
+}
+@media(max-width:800px){
+  .gw-hero-img {
+    min-height: 0;
+    aspect-ratio: 4/3;
+  }
+}
+
+/* ── SECTIONS ── */
+.gw-sec     { padding: 80px 0; }
+.gw-sec-alt { padding: 80px 0; background: var(--sand); border-top: 1px solid var(--bd); border-bottom: 1px solid var(--bd); }
+
+.gw-lbl {
+  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--or); margin-bottom: 14px; display: block;
+}
+.gw-h2 {
+  font-family: var(--serif); font-size: clamp(26px, 3.5vw, 44px);
+  color: var(--ink); line-height: 1.15; margin-bottom: 18px; font-weight: 400;
+}
+.gw-h2 em { font-style: italic; color: var(--or); }
+.gw-body-text { font-size: 17px; color: var(--ink2); line-height: 1.8; }
+
+/* ── ABOUT ── */
+.gw-about {
+  display: grid; grid-template-columns: 380px 1fr;
+  border: 1px solid var(--bd); border-radius: 6px; overflow: hidden;
+}
+@media(max-width:720px){ .gw-about { grid-template-columns: 1fr; } }
+.gw-about-img {
+  position: relative; overflow: hidden;
+  background: var(--or-lt);
+  /* desktop: la altura la marca el texto del lado derecho */
+  min-height: 420px;
+}
+.gw-about-img img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+@media(max-width:720px){
+  .gw-about-img {
+    min-height: 0;
+    aspect-ratio: 1/1;
+  }
+}
+.gw-about-copy {
+  padding: 52px 52px 52px 56px; background: var(--white);
+  border-left: 1px solid var(--bd);
+  display: flex; flex-direction: column; justify-content: center;
+}
+@media(max-width:720px){ .gw-about-copy { padding: 40px 36px; border-left: none; border-top: 1px solid var(--bd); } }
+.gw-about-copy p { font-size: 16px; color: var(--ink2); line-height: 1.8; margin-bottom: 16px; }
+.gw-about-copy p:last-child { margin-bottom: 0; }
+.gw-quote {
+  margin: 22px 0; padding: 20px 26px;
+  background: var(--or-pale); border-left: 4px solid var(--or); border-radius: 0 4px 4px 0;
+}
+.gw-quote p {
+  font-family: var(--serif); font-size: 20px; font-style: italic;
+  color: var(--or); line-height: 1.45; margin: 0 !important; font-weight: 400;
+}
+
+/* ── PROBLEMA ── */
+.gw-pain {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: var(--bd); border: 1px solid var(--bd);
+  border-radius: 6px; overflow: hidden; margin-top: 36px;
+}
+@media(max-width:520px){ .gw-pain { grid-template-columns: 1fr; } }
+.gw-pain-c { background: var(--white); padding: 26px 30px; }
+.gw-pain-c p { font-size: 15px; color: var(--ink2); line-height: 1.65; padding-left: 16px; position: relative; }
+.gw-pain-c p::before { content: '—'; position: absolute; left: 0; color: var(--or-warm); font-weight: 600; }
+.gw-callout {
+  margin-top: 30px; padding: 24px 30px;
+  background: var(--or-pale); border-left: 4px solid var(--or); border-radius: 0 4px 4px 0;
+}
+.gw-callout p {
+  font-family: var(--serif); font-size: 20px; font-style: italic;
+  color: var(--ink); line-height: 1.5; font-weight: 400;
+}
+
+/* ── FORMULARIO PRINCIPAL (sección oscura) ── */
+.gw-form-sec {
+  background: var(--ink);
+  padding: 84px 36px;
+}
+.gw-form-inner {
+  max-width: 1000px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 420px; gap: 72px; align-items: center;
+}
+@media(max-width:780px){ .gw-form-inner { grid-template-columns: 1fr; gap: 48px; } }
+
+/* copy izquierda */
+.gw-form-lbl { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 14px; display: block; }
+.gw-form-h2 { font-family: var(--serif); font-size: clamp(26px, 3.4vw, 42px); color: #fff; line-height: 1.15; margin-bottom: 16px; font-weight: 400; }
+.gw-form-h2 em { font-style: italic; color: var(--or-warm); }
+.gw-form-sub { font-size: 17px; color: rgba(255,255,255,.62); line-height: 1.8; margin-bottom: 28px; }
+.gw-form-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.gw-form-bullets li {
+  font-size: 15px; color: rgba(255,255,255,.7); line-height: 1.6; padding-left: 22px; position: relative;
+}
+.gw-form-bullets li::before {
+  content: ''; position: absolute; left: 0; top: 8px;
+  width: 10px; height: 6px;
+  border-left: 2px solid var(--or-warm); border-bottom: 2px solid var(--or-warm);
+  transform: rotate(-45deg);
+}
+
+/* card formulario */
+.gw-fcard {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 36px 32px;
+  box-shadow: 0 28px 72px rgba(0,0,0,.4);
+}
+.gw-fcard-tag {
+  display: inline-block;
+  background: var(--or-pale); border: 1px solid var(--bd2); border-radius: 3px;
+  font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--or); padding: 5px 12px; margin-bottom: 16px;
+}
+.gw-fcard h3 {
+  font-family: var(--serif); font-size: 21px; font-style: italic; font-weight: 400;
+  color: var(--ink); line-height: 1.35; margin-bottom: 8px;
+}
+.gw-fcard-sub {
+  font-size: 14px; color: var(--ink3); line-height: 1.6;
+  margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--bd);
+}
+.gw-flbl { display: block; font-size: 13px; font-weight: 600; color: var(--ink2); margin-bottom: 7px; }
+.gw-finput {
+  width: 100%; padding: 13px 16px;
+  border: 1.5px solid var(--bd); border-radius: 4px;
+  font-family: var(--sans); font-size: 15px; color: var(--ink);
+  background: var(--white); outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  margin-bottom: 14px; display: block;
+}
+.gw-finput:focus { border-color: var(--or); box-shadow: 0 0 0 3px rgba(196,92,10,.1); }
+.gw-finput::placeholder { color: var(--ink3); }
+.gw-finput.err { border-color: #DC2626; }
+
+.gw-fsubmit {
+  width: 100%; padding: 16px 24px;
+  background: var(--or); color: #fff;
+  font-family: var(--sans); font-size: 16px; font-weight: 700;
+  border: none; border-radius: 4px; cursor: pointer;
+  transition: background .2s, transform .15s;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.gw-fsubmit:hover:not(:disabled) { background: var(--or-mid); transform: translateY(-1px); }
+.gw-fsubmit:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+
+.gw-spin {
+  width: 17px; height: 17px; flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,.3); border-top-color: #fff;
+  border-radius: 50%; animation: gwSpin .7s linear infinite; display: none;
+}
+@keyframes gwSpin { to { transform: rotate(360deg); } }
+
+.gw-ferror {
+  background: #FEF2F2; border: 1px solid #FECACA; border-radius: 4px;
+  padding: 11px 14px; font-size: 13px; color: #B91C1C;
+  margin-top: 10px; display: none;
+}
+.gw-fprivacy { font-size: 12px; color: var(--ink3); text-align: center; margin-top: 11px; line-height: 1.6; }
+
+/* estado éxito */
+.gw-fsuccess { display: none; text-align: center; padding: 12px 0; }
+.gw-fsuccess-icon {
+  width: 52px; height: 52px; background: #DCFCE7; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
+}
+.gw-fsuccess h4 {
+  font-family: var(--serif); font-size: 22px; font-weight: 400;
+  color: var(--ink); margin-bottom: 10px; line-height: 1.3;
+}
+.gw-fsuccess p { font-size: 15px; color: var(--ink2); line-height: 1.7; }
+
+/* ── SISTEMA ── */
+.gw-steps {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  border: 1px solid var(--bd); border-radius: 6px; overflow: hidden; margin-top: 40px;
+}
+@media(max-width:620px){ .gw-steps { grid-template-columns: 1fr 1fr; } }
+.gw-step { padding: 30px 26px; border-right: 1px solid var(--bd); background: var(--white); transition: background .2s; }
+.gw-step:last-child { border-right: none; }
+.gw-step:hover { background: var(--or-pale); }
+.gw-step-n { font-family: var(--serif); font-size: 38px; color: var(--bd2); line-height: 1; margin-bottom: 14px; font-weight: 400; }
+.gw-step-t { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 7px; }
+.gw-step-d { font-size: 14px; color: var(--ink3); line-height: 1.65; }
+.gw-system-tag {
+  display: inline-block; margin-top: 28px;
+  padding: 13px 24px; background: var(--or-pale); border: 1px solid var(--bd2); border-radius: 3px;
+  font-family: var(--serif); font-size: 18px; font-style: italic; color: var(--or); font-weight: 400;
+}
+
+/* ── LLAMADA ── */
+.gw-call {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--bd); border-radius: 6px; overflow: hidden; margin-top: 36px;
+}
+@media(max-width:680px){ .gw-call { grid-template-columns: 1fr; } }
+.gw-call-img {
+  position: relative; overflow: hidden;
+  background: var(--or-lt);
+  /* desktop: la altura la marca el contenido del lado derecho */
+  min-height: 360px;
+}
+.gw-call-img img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center center;
+  display: block;
+}
+@media(max-width:680px){
+  .gw-call-img {
+    min-height: 0;
+    aspect-ratio: 16/9;
+  }
+}
+.gw-call-copy {
+  padding: 48px 44px; background: var(--white); border-left: 1px solid var(--bd);
+  display: flex; flex-direction: column; justify-content: center;
+}
+@media(max-width:680px){ .gw-call-copy { padding: 36px; border-left: none; border-top: 1px solid var(--bd); } }
+.gw-call-copy > p { font-size: 17px; color: var(--ink2); line-height: 1.8; }
+.gw-call-list { list-style: none; margin: 22px 0 28px; display: flex; flex-direction: column; gap: 11px; }
+.gw-call-list li { font-size: 15px; color: var(--ink2); padding-left: 18px; position: relative; line-height: 1.6; }
+.gw-call-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 7px; height: 1px; background: var(--or-mid); }
+.gw-call-note { font-size: 13px; color: var(--ink3); text-align: center; margin-top: 10px; }
+
+/* ── FILTRO ── */
+.gw-filter { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 36px; }
+@media(max-width:540px){ .gw-filter { grid-template-columns: 1fr; } }
+.gw-fc { border: 1px solid var(--bd); border-radius: 6px; padding: 34px 36px; }
+.gw-fc.yes { background: var(--or-pale); }
+.gw-fc.no  { background: var(--white); }
+.gw-fc h3 { font-size: 16px; font-weight: 700; margin-bottom: 20px; }
+.gw-fc.yes h3 { color: var(--or); }
+.gw-fc.no  h3 { color: var(--ink); }
+.gw-fc ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.gw-fc ul li { font-size: 15px; color: var(--ink2); line-height: 1.55; padding-left: 22px; position: relative; }
+.gw-fc.yes ul li::before {
+  content: ''; position: absolute; left: 0; top: 7px;
+  width: 12px; height: 7px;
+  border-left: 2px solid var(--or); border-bottom: 2px solid var(--or);
+  transform: rotate(-45deg);
+}
+.gw-fc.no ul li::before { content: '✕'; position: absolute; left: 2px; top: 0; font-size: 13px; color: var(--ink3); font-weight: 600; }
+
+/* ── CIERRE ── */
+.gw-cierre { background: var(--sand); border-top: 1px solid var(--bd); padding: 80px 36px; text-align: center; }
+.gw-cierre .gw-h2 { max-width: 540px; margin: 0 auto 16px; }
+.gw-cierre p { font-size: 17px; color: var(--ink2); line-height: 1.8; max-width: 480px; margin: 0 auto 32px; }
+.gw-cierre .scroll-btn { display: inline-block; width: auto; padding: 15px 44px; font-size: 16px; }
+
+/* ── FOOTER ── */
+.gw-footer { padding: 24px 36px; text-align: center; font-size: 13px; color: var(--ink3); border-top: 1px solid var(--bd); }
+
+/* ── STICKY ── */
+.gw-sticky {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 400;
+  background: #fff; border-top: 1px solid var(--bd);
+  padding: 12px 28px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  transform: translateY(100%); transition: transform .35s ease;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.07);
+}
+.gw-sticky.show { transform: translateY(0); }
+.gw-sticky p { font-size: 14px; color: var(--ink2); }
+.gw-sticky p strong { color: var(--ink); }
+.gw-sticky .scroll-btn { display: inline-block; width: auto; padding: 11px 24px; font-size: 14px; }
+@media(max-width:460px){ .gw-sticky p { display: none; } .gw-sticky { justify-content: center; } }
+
+/* ── DRAWER LLAMADA ── */
+.gw-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(28,20,16,.55);
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease;
+  backdrop-filter: blur(3px);
+}
+.gw-overlay.open { opacity: 1; pointer-events: all; }
+
+.gw-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 501;
+  width: 100%; max-width: 440px;
+  background: var(--white);
+  box-shadow: -8px 0 48px rgba(0,0,0,.18);
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column;
+  overflow-y: auto;
+}
+.gw-drawer.open { transform: translateX(0); }
+
+.gw-drawer-head {
+  padding: 28px 32px 24px;
+  border-bottom: 1px solid var(--bd);
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+  flex-shrink: 0;
+}
+.gw-drawer-head-copy {}
+.gw-drawer-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+  color: var(--or); margin-bottom: 6px; display: block;
+}
+.gw-drawer-head h3 {
+  font-family: var(--serif); font-size: 24px; font-weight: 400; color: var(--ink);
+  line-height: 1.2;
+}
+.gw-drawer-close {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: var(--sand); border: 1px solid var(--bd);
+  border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: var(--ink3); line-height: 1;
+  transition: background .2s; margin-top: 2px;
+  font-family: var(--sans); font-weight: 400;
+}
+.gw-drawer-close:hover { background: var(--bd); }
+
+.gw-drawer-body { padding: 28px 32px; flex: 1; display: flex; flex-direction: column; gap: 0; }
+
+.gw-drawer-intro {
+  font-size: 15px; color: var(--ink2); line-height: 1.7;
+  margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--bd);
+}
+
+/* campos del drawer */
+.gw-dlbl { display: block; font-size: 13px; font-weight: 600; color: var(--ink2); margin-bottom: 6px; }
+.gw-dinput {
+  width: 100%; padding: 13px 16px;
+  border: 1.5px solid var(--bd); border-radius: 4px;
+  font-family: var(--sans); font-size: 15px; color: var(--ink);
+  background: var(--white); outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  margin-bottom: 16px; display: block;
+}
+.gw-dinput:focus { border-color: var(--or); box-shadow: 0 0 0 3px rgba(196,92,10,.1); }
+.gw-dinput::placeholder { color: var(--ink3); }
+.gw-dinput.err { border-color: #DC2626; }
+
+.gw-dsubmit {
+  width: 100%; padding: 15px 24px;
+  background: var(--or); color: #fff;
+  font-family: var(--sans); font-size: 15px; font-weight: 700;
+  border: none; border-radius: 4px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: background .2s, transform .15s;
+  margin-bottom: 14px;
+}
+.gw-dsubmit:hover:not(:disabled) { background: var(--or-mid); transform: translateY(-1px); }
+.gw-dsubmit:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+
+.gw-dspin {
+  width: 16px; height: 16px; flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,.3); border-top-color: #fff;
+  border-radius: 50%; animation: gwSpin .7s linear infinite; display: none;
+}
+
+.gw-derror {
+  background: #FEF2F2; border: 1px solid #FECACA; border-radius: 4px;
+  padding: 10px 14px; font-size: 13px; color: #B91C1C;
+  margin-bottom: 12px; display: none;
+}
+.gw-dprivacy { font-size: 12px; color: var(--ink3); text-align: center; line-height: 1.6; }
+
+/* separador whatsapp */
+.gw-dor {
+  display: flex; align-items: center; gap: 12px;
+  margin: 22px 0;
+}
+.gw-dor-line { flex: 1; height: 1px; background: var(--bd); }
+.gw-dor-text { font-size: 12px; color: var(--ink3); white-space: nowrap; }
+
+/* botón whatsapp */
+.gw-wa {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  width: 100%; padding: 14px 20px;
+  background: #25D366; color: #fff;
+  font-family: var(--sans); font-size: 15px; font-weight: 700;
+  border: none; border-radius: 4px; cursor: pointer; text-decoration: none;
+  transition: background .2s, transform .15s;
+  margin-bottom: 10px;
+}
+.gw-wa:hover { background: #1ebe5d; transform: translateY(-1px); color: #fff; }
+.gw-wa-note { font-size: 12px; color: var(--ink3); text-align: center; line-height: 1.6; }
+
+/* estado éxito drawer */
+.gw-dsuccess {
+  display: none; text-align: center;
+  padding: 32px 0;
+  flex: 1; flex-direction: column; align-items: center; justify-content: center;
+}
+.gw-dsuccess.show { display: flex; }
+.gw-dsuccess-icon {
+  width: 56px; height: 56px; background: #DCFCE7; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;
+}
+.gw-dsuccess h4 {
+  font-family: var(--serif); font-size: 24px; font-weight: 400;
+  color: var(--ink); margin-bottom: 12px; line-height: 1.25;
+}
+.gw-dsuccess p { font-size: 15px; color: var(--ink2); line-height: 1.75; max-width: 300px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+
+<div class="gw">
+
+  <!-- NAV -->
+  <nav class="gw-nav">
+    <div class="gw-nav-i">
+      <span class="gw-brand">Guillem</span>
+      <div class="gw-nav-links">
+        <a href="#gw-sobre">Sobre mí</a>
+        <a href="#gw-sistema">El sistema</a>
+        <a href="#gw-llamada" class="call-btn">Llamada</a>
+        <button class="gw-nav-btn scroll-btn">Descargar guía</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="gw-hero">
+    <div class="gw-hero-i">
+      <div class="gw-hero-copy">
+        <span class="gw-kicker">Academias de oposiciones</span>
+        <h1 class="gw-h1">Ayudo a academias de oposiciones a conseguir más alumnos <em>de forma constante</em></h1>
+        <p class="gw-hero-sub">Sin depender del boca a boca ni perder tiempo en marketing. Con un sistema que funciona.</p>
+        <div class="gw-hero-cta-area">
+          <button class="gw-btn gw-btn-or scroll-btn">Descargar guía gratuita</button>
+          <div style="display:flex;align-items:center;gap:12px;margin:4px 0;">
+            <div style="flex:1;height:1px;background:var(--bd);"></div>
+            <span style="font-size:12px;color:var(--ink3);">o si prefieres ir directo</span>
+            <div style="flex:1;height:1px;background:var(--bd);"></div>
+          </div>
+          <button class="gw-btn gw-btn-ol call-btn">Reservar llamada</button>
+          <p class="gw-hero-note">Sin spam. Sin compromiso. 100% gratuito.</p>
+        </div>
+      </div>
+      <div class="gw-hero-img">
+        <img src="img/hero.jpg" alt="Academias de oposiciones">
+      </div>
+    </div>
+  </div>
+
+  <!-- SOBRE MÍ -->
+  <section class="gw-sec" id="gw-sobre">
+    <div class="gw-W rv">
+      <div class="gw-about">
+        <div class="gw-about-img">
+          <img src="img/sobre-mi.jpg" alt="Guillem">
+        </div>
+        <div class="gw-about-copy">
+          <span class="gw-lbl">Sobre mí</span>
+          <h2 class="gw-h2">Soy Guillem</h2>
+          <p>Me especializo en ayudar a academias de oposiciones a resolver uno de sus mayores problemas: la falta de alumnos constante.</p>
+          <p>Después de analizar cómo crecen las academias que sí escalan, detecté algo claro:</p>
+          <div class="gw-quote"><p>No dependen del boca a boca. Tienen un sistema.</p></div>
+          <p>Y eso es exactamente lo que te explico — primero en la guía gratuita, y después, si encajamos, contigo directamente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section class="gw-sec-alt">
+    <div class="gw-W rv">
+      <span class="gw-lbl">El Problema</span>
+      <h2 class="gw-h2">La mayoría de academias están atrapadas <em>en este ciclo</em></h2>
+      <div class="gw-pain">
+        <div class="gw-pain-c"><p>Algunos meses entran alumnos, otros no</p></div>
+        <div class="gw-pain-c"><p>No hay previsibilidad en los ingresos</p></div>
+        <div class="gw-pain-c"><p>Dependen de recomendaciones que no controlan</p></div>
+        <div class="gw-pain-c"><p>No tienen control sobre su crecimiento</p></div>
+      </div>
+      <div class="gw-callout">
+        <p>Eso genera frustración, inestabilidad y estancamiento. No porque el producto sea malo — sino porque no hay un sistema.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FORMULARIO PRINCIPAL — id="gw-guia"
+       Todos los botones de la página scrollean aquí
+       ══════════════════════════════════════════ -->
+  <div class="gw-form-sec" id="gw-guia">
+    <div class="gw-form-inner">
+
+      <!-- COPY IZQUIERDA -->
+      <div>
+        <span class="gw-form-lbl">Guía gratuita</span>
+        <h2 class="gw-form-h2">Consigue más alumnos <em>desde esta semana</em></h2>
+        <p class="gw-form-sub">He resumido en un PDF el sistema que usan las academias que crecen de forma constante. Sin rodeos, sin relleno.</p>
+        <ul class="gw-form-bullets">
+          <li>Cómo atraer opositores interesados de forma constante</li>
+          <li>Por qué la mayoría de academias no convierten leads en alumnos</li>
+          <li>El sistema básico que puedes implementar desde ya</li>
+          <li>Cómo dejar de depender del boca a boca</li>
+        </ul>
+      </div>
+
+      <!-- CARD FORMULARIO -->
+      <div class="gw-fcard">
+        <span class="gw-fcard-tag">Descarga gratuita</span>
+        <h3>"Cómo conseguir más alumnos para tu academia en menos tiempo"</h3>
+        <p class="gw-fcard-sub">Deja tu correo y te lo enviamos ahora mismo. Sin spam, sin suscripciones.</p>
+
+        <div id="gw-form-body">
+          <label class="gw-flbl" for="gw-email">Tu correo electrónico</label>
+          <input class="gw-finput" type="email" id="gw-email" placeholder="nombre@tuacademia.es" autocomplete="email">
+          <div class="gw-ferror" id="gw-ferror">Por favor, introduce un correo electrónico válido.</div>
+          <button class="gw-fsubmit" id="gw-fsubmit" type="button">
+            <span class="gw-spin" id="gw-spin"></span>
+            <span id="gw-fbtn-txt">Enviarme la guía gratis</span>
+          </button>
+          <p class="gw-fprivacy">Sin spam. Te enviamos la guía y nada más.</p>
+        </div>
+
+        <div class="gw-fsuccess" id="gw-fsuccess">
+          <div class="gw-fsuccess-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h4>Revisa tu bandeja de entrada</h4>
+          <p>Te hemos enviado la guía a tu correo. Si no aparece en unos minutos, mira en la carpeta de spam.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SISTEMA -->
+  <section class="gw-sec" id="gw-sistema">
+    <div class="gw-W rv">
+      <span class="gw-lbl">El Sistema</span>
+      <h2 class="gw-h2">Las academias que crecen siguen <em>un proceso claro</em></h2>
+      <p class="gw-body-text">No es suerte. Es un sistema repetible que funciona independientemente del boca a boca.</p>
+      <div class="gw-steps">
+        <div class="gw-step"><div class="gw-step-n">01</div><div class="gw-step-t">Atracción</div><div class="gw-step-d">Atraen opositores cualificados de forma constante</div></div>
+        <div class="gw-step"><div class="gw-step-n">02</div><div class="gw-step-t">Filtrado</div><div class="gw-step-d">Filtran a los interesados reales de los que no van a matricularse</div></div>
+        <div class="gw-step"><div class="gw-step-n">03</div><div class="gw-step-t">Conversión</div><div class="gw-step-d">Los convierten en alumnos con un proceso claro</div></div>
+        <div class="gw-step"><div class="gw-step-n">04</div><div class="gw-step-t">Repetición</div><div class="gw-step-d">Repiten el proceso mes a mes de forma predecible</div></div>
+      </div>
+      <div class="gw-system-tag">No es suerte. Es sistema.</div>
+    </div>
+  </section>
+
+  <!-- CTA INTERMEDIO -->
+  <div style="background:var(--or-pale);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:72px 36px;text-align:center;" class="rv">
+    <span class="gw-lbl">Siguiente paso</span>
+    <h2 class="gw-h2" style="max-width:520px;margin:0 auto 14px;">Empieza por entender cómo funciona</h2>
+    <p style="font-size:17px;color:var(--ink2);line-height:1.75;max-width:460px;margin:0 auto 28px;">Descarga la guía gratuita. Es el primer paso antes de decidir si quieres implementarlo.</p>
+    <button class="gw-btn gw-btn-or scroll-btn" style="display:inline-block;width:auto;padding:14px 40px;">Descargar guía gratis</button>
+  </div>
+
+  <!-- LLAMADA -->
+  <section class="gw-sec" id="gw-llamada">
+    <div class="gw-W rv">
+      <span class="gw-lbl">Para los que ya tienen claro lo que quieren</span>
+      <h2 class="gw-h2">¿Quieres que te ayude <em>directamente?</em></h2>
+      <div class="gw-call">
+        <div class="gw-call-img">
+          <img src="img/llamada.jpg" alt="Reunión de trabajo">
+        </div>
+        <div class="gw-call-copy">
+          <p>Si ya tienes una academia y quieres acelerar resultados, podemos analizar tu caso y ver cómo aplicar este sistema contigo.</p>
+          <ul class="gw-call-list">
+            <li>Revisamos tu situación actual</li>
+            <li>Identificamos qué te está frenando</li>
+            <li>Vemos cómo podrías conseguir más alumnos</li>
+          </ul>
+          <button class="gw-btn gw-btn-or call-btn">Reservar llamada gratuita</button>
+          <p class="gw-call-note">30 minutos — Gratuita — Sin compromiso</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTRO -->
+  <section class="gw-sec-alt">
+    <div class="gw-W rv">
+      <span class="gw-lbl">Compatibilidad</span>
+      <h2 class="gw-h2">Esto es para ti si</h2>
+      <div class="gw-filter">
+        <div class="gw-fc yes">
+          <h3>Es para ti si</h3>
+          <ul>
+            <li>Tienes una academia de oposiciones</li>
+            <li>Quieres más alumnos de forma constante</li>
+            <li>Estás dispuesto a implementar un sistema</li>
+          </ul>
+        </div>
+        <div class="gw-fc no">
+          <h3>No es para ti si</h3>
+          <ul>
+            <li>Buscas resultados sin implicarte</li>
+            <li>No tienes academia todavía</li>
+            <li>Solo quieres probar cosas sin compromiso</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <div class="gw-cierre rv">
+    <span class="gw-lbl">Siguiente paso</span>
+    <h2 class="gw-h2">Puedes seguir dependiendo del boca a boca…</h2>
+    <p>O empezar a construir un sistema que te dé estabilidad. La guía es el primer paso — gratuita y sin rodeos.</p>
+    <button class="gw-btn gw-btn-or scroll-btn" style="display:inline-block;width:auto;padding:15px 44px;font-size:16px;">Descargar guía gratis</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="gw-footer">Guillem — Sistema de captación para academias de oposiciones</div>
+
+  <!-- STICKY -->
+  <div class="gw-sticky" id="gw-sticky">
+    <p><strong>Descarga la guía gratuita</strong> — te la enviamos al correo ahora mismo</p>
+    <button class="gw-btn gw-btn-or scroll-btn" style="display:inline-block;width:auto;padding:11px 24px;font-size:14px;">Descargar guía</button>
+  </div>
+
+  <!-- OVERLAY -->
+  <div class="gw-overlay" id="gw-overlay"></div>
+
+  <!-- DRAWER LLAMADA -->
+  <div class="gw-drawer" id="gw-drawer" role="dialog" aria-modal="true" aria-label="Reservar llamada">
+
+    <div class="gw-drawer-head">
+      <div class="gw-drawer-head-copy">
+        <span class="gw-drawer-tag">Reservar llamada gratuita</span>
+        <h3>Te llamamos nosotros</h3>
+      </div>
+      <button class="gw-drawer-close" id="gw-drawer-close" aria-label="Cerrar">&#x2715;</button>
+    </div>
+
+    <div class="gw-drawer-body">
+
+      <!-- FORMULARIO -->
+      <div id="gw-dform">
+        <p class="gw-drawer-intro">Déjanos tu correo y tu número. Nos ponemos en contacto contigo para agendar la llamada en el horario que mejor te vaya.</p>
+
+        <label class="gw-dlbl" for="gw-dcorreo">Correo electrónico</label>
+        <input class="gw-dinput" type="email" id="gw-dcorreo" placeholder="nombre@tuacademia.es" autocomplete="email">
+
+        <label class="gw-dlbl" for="gw-dtelefono">Número de teléfono</label>
+        <input class="gw-dinput" type="tel" id="gw-dtelefono" placeholder="600 000 000" autocomplete="tel">
+
+        <div class="gw-derror" id="gw-derror">Por favor, rellena todos los campos correctamente.</div>
+
+        <button class="gw-dsubmit" id="gw-dsubmit" type="button">
+          <span class="gw-dspin" id="gw-dspin"></span>
+          <span id="gw-dbtn-txt">Solicitar llamada</span>
+        </button>
+        <p class="gw-dprivacy">Te contactamos en menos de 24h en horario laboral.</p>
+
+        <div class="gw-dor">
+          <div class="gw-dor-line"></div>
+          <span class="gw-dor-text">¿Prefieres escribir tú primero?</span>
+          <div class="gw-dor-line"></div>
+        </div>
+
+        <a class="gw-wa" href="https://wa.me/34601150924?text=Hola%20Guillem%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20el%20sistema%20de%20captaci%C3%B3n%20para%20academias." target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.882a.5.5 0 0 0 .611.611l6.083-1.462A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.938a9.929 9.929 0 0 1-5.073-1.389l-.363-.216-3.761.904.921-3.669-.236-.376A9.911 9.911 0 0 1 2.062 12C2.062 6.508 6.508 2.062 12 2.062S21.938 6.508 21.938 12 17.492 21.938 12 21.938z"/>
+          </svg>
+          Escribir por WhatsApp
+        </a>
+        <p class="gw-wa-note">601 15 09 24 — Respuesta más rápida por esta vía</p>
+      </div>
+
+      <!-- ÉXITO -->
+      <div class="gw-dsuccess" id="gw-dsuccess">
+        <div class="gw-dsuccess-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h4>Recibido. Te llamamos pronto.</h4>
+        <p>Nos pondremos en contacto contigo en menos de 24 horas para agendar la llamada.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /gw -->
+
+<script>
+(function () {
+
+  // ─── CAMBIA ESTA URL POR LA DE TU WEBHOOK EN N8N ──────────────
+  var N8N_WEBHOOK = 'TU-WEBHOOK-N8N';
+  // Ejemplo: 'https://tudominio.n8n.cloud/webhook/guillem-guia'
+  // ──────────────────────────────────────────────────────────────
+
+  // ── 1. SCROLL: todos los botones con clase .scroll-btn van a #gw-guia ──
+  document.querySelectorAll('.scroll-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var target = document.getElementById('gw-guia');
+      if (!target) return;
+      var offset = 70; // altura del nav
+      var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+      // pequeño delay para que el scroll acabe y luego focus en el input
+      setTimeout(function () {
+        var inp = document.getElementById('gw-email');
+        if (inp) inp.focus();
+      }, 600);
+    });
+  });
+
+  // ── 2. FORMULARIO → N8N ──────────────────────────────────────
+  var input   = document.getElementById('gw-email');
+  var submitBtn = document.getElementById('gw-fsubmit');
+  var spinner = document.getElementById('gw-spin');
+  var btnTxt  = document.getElementById('gw-fbtn-txt');
+  var errorEl = document.getElementById('gw-ferror');
+  var formBody= document.getElementById('gw-form-body');
+  var success = document.getElementById('gw-fsuccess');
+
+  function validEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+  }
+  function setLoading(on) {
+    submitBtn.disabled     = on;
+    spinner.style.display  = on ? 'inline-block' : 'none';
+    btnTxt.textContent     = on ? 'Enviando…' : 'Enviarme la guía gratis';
+  }
+  function showError(msg) {
+    input.classList.add('err');
+    errorEl.textContent   = msg;
+    errorEl.style.display = 'block';
+  }
+  function clearError() {
+    input.classList.remove('err');
+    errorEl.style.display = 'none';
+  }
+
+  input.addEventListener('input', clearError);
+
+  submitBtn.addEventListener('click', function () {
+    clearError();
+    var email = input.value.trim();
+    if (!validEmail(email)) {
+      showError('Por favor, introduce un correo electrónico válido.');
+      input.focus();
+      return;
+    }
+    setLoading(true);
+    fetch(N8N_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    })
+    .then(function (res) {
+      if (!res.ok) throw new Error('error');
+      formBody.style.display = 'none';
+      success.style.display  = 'block';
+    })
+    .catch(function () {
+      setLoading(false);
+      showError('Ha habido un problema al enviar. Inténtalo de nuevo o escríbeme directamente.');
+    });
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') submitBtn.click();
+  });
+
+  // ── 3. REVEAL ON SCROLL ───────────────────────────────────────
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: .1 });
+  document.querySelectorAll('.gw .rv').forEach(function (el) { obs.observe(el); });
+
+  // ── 4. STICKY BAR ─────────────────────────────────────────────
+  var sticky = document.getElementById('gw-sticky');
+  window.addEventListener('scroll', function () {
+    sticky.classList.toggle('show', window.pageYOffset > 500);
+  });
+
+  // ── 5. DRAWER LLAMADA ─────────────────────────────────────────
+  var N8N_WEBHOOK_LLAMADA = 'TU-WEBHOOK-N8N-LLAMADA';
+  // Crea un segundo webhook en n8n para las solicitudes de llamada
+  // Los datos que recibirá: { email, telefono }
+
+  var overlay    = document.getElementById('gw-overlay');
+  var drawer     = document.getElementById('gw-drawer');
+  var closeBtn   = document.getElementById('gw-drawer-close');
+
+  var dEmail     = document.getElementById('gw-dcorreo');
+  var dPhone     = document.getElementById('gw-dtelefono');
+  var dSubmit    = document.getElementById('gw-dsubmit');
+  var dSpin      = document.getElementById('gw-dspin');
+  var dBtnTxt    = document.getElementById('gw-dbtn-txt');
+  var dError     = document.getElementById('gw-derror');
+  var dForm      = document.getElementById('gw-dform');
+  var dSuccess   = document.getElementById('gw-dsuccess');
+
+  function openDrawer() {
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { dEmail.focus(); }, 350);
+  }
+  function closeDrawer() {
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Todos los botones "call-btn" abren el drawer
+  document.querySelectorAll('.call-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      openDrawer();
+    });
+  });
+
+  overlay.addEventListener('click', closeDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeDrawer();
+  });
+
+  // Validación y envío del formulario de llamada
+  function dClearError() {
+    dError.style.display = 'none';
+    dEmail.classList.remove('err');
+    dPhone.classList.remove('err');
+  }
+  function dShowError(msg) {
+    dError.textContent   = msg;
+    dError.style.display = 'block';
+  }
+  function dSetLoading(on) {
+    dSubmit.disabled    = on;
+    dSpin.style.display = on ? 'inline-block' : 'none';
+    dBtnTxt.textContent = on ? 'Enviando…' : 'Solicitar llamada';
+  }
+
+  dEmail.addEventListener('input', dClearError);
+  dPhone.addEventListener('input', dClearError);
+
+  dSubmit.addEventListener('click', function () {
+    dClearError();
+    var email  = dEmail.value.trim();
+    var phone  = dPhone.value.trim();
+    var ok = true;
+
+    if (!validEmail(email)) {
+      dEmail.classList.add('err'); ok = false;
+    }
+    if (phone.length < 7) {
+      dPhone.classList.add('err'); ok = false;
+    }
+    if (!ok) {
+      dShowError('Por favor, rellena el correo y el teléfono correctamente.');
+      return;
+    }
+
+    dSetLoading(true);
+
+    fetch(N8N_WEBHOOK_LLAMADA, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, telefono: phone })
+    })
+    .then(function (res) {
+      if (!res.ok) throw new Error('error');
+      dForm.style.display = 'none';
+      dSuccess.classList.add('show');
+    })
+    .catch(function () {
+      dSetLoading(false);
+      dShowError('Ha habido un problema. Escríbenos por WhatsApp y lo gestionamos al momento.');
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
